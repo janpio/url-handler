@@ -13,4 +13,5 @@ export default NextAuth({
         }),
     ],
     adapter: PrismaAdapter(prisma),
+
 });

@@ -1,6 +1,10 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
-
+import { Inter, Stylish } from "next/font/google";
+export const Sttylish = Stylish({
+    subsets: ["latin"],
+    weight: "400",
+    variable: "--font-stylish",
+});
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
