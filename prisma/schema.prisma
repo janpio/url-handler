@@ -39,11 +39,13 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  password      String?
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  Url           Url[]
 }
 
 model VerificationRequest {
@@ -55,4 +57,16 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
+}
+
+model Url {
+  id           String   @id @default(cuid())
+  givenUrl     String
+  generatedUrl String? @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdById  String?
+  createdBy    User?     @relation(fields: [createdById], references: [id])
+
+  @@unique([givenUrl])
 }

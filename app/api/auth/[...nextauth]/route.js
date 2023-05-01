@@ -4,9 +4,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";
 import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
+import { compare } from "bcrypt";
+import prisma from "@/app/utils/prismaClient";
 
-const prisma = new PrismaClient();
 const authOptions = {
     session: {
         strategy: "jwt",
@@ -26,13 +26,19 @@ const handler = NextAuth({
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials, req) {
-                const user = {
-                    id: "1",
-                    name: "test",
-                    email: "test@test.com",
-                };
+                const user = prisma.user.findUnique({
+                    where: { email: credentials.username },
+                });
                 if (user) {
-                    return user;
+                    const isMatch = compare(
+                        credentials.password,
+                        user.password
+                    );
+                    if (isMatch) {
+                        return user;
+                    } else {
+                        return null;
+                    }
                 } else {
                     return null;
                 }
