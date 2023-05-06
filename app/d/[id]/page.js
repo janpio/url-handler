@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import prisma from "@/app/utils/prismaClient";
 
 export default async function FileDownloader({ params: { id } }) {
     const UrlDownloader = async () => {
@@ -19,9 +20,10 @@ export default async function FileDownloader({ params: { id } }) {
         }
     };
 
-    if (url?.givenUrl) {
-        return redirect(url?.givenUrl);
+    const { givenUrl } = await UrlDownloader();
+    if (givenUrl) {
+        redirect("/");
     } else {
-        return <p> something went wrong</p>;
+        return <p>something went wrong</p>;
     }
 }
