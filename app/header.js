@@ -4,7 +4,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 export default function Header() {
     const LoginHandler = () => {
-        if (true) {
+        if (false) {
             return (
                 <Link href="/api/auth/signout">
                     <LogoutIcon />

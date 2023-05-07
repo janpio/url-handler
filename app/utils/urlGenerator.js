@@ -5,12 +5,10 @@ export async function urlGenerator(url, session) {
     if (typeof url !== "string") {
         throw new Error("Invalid URL");
     }
-
     const newUrl = url.replace(
         /file\/d\/(.+?)\/.*$/,
         "uc?id=$1&export=download"
     );
-
     try {
         const user = await prisma.user.findUnique({
             where: {

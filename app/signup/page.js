@@ -1,8 +1,9 @@
 import prisma from "@/app/utils/prismaClient";
 import { hash } from "bcrypt";
 
-export function Signup() {
+export default function Signup() {
     const createUser = async (email, password) => {
+        "use server";
         const hashedPassword = await hash(password, 10);
 
         try {
@@ -30,10 +31,10 @@ export function Signup() {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        "use server";
+        const emailInput = "";
 
-        const emailInput = event.target.elements.email.value;
-        const passwordInput = event.target.elements.password.value;
+        const passwordInput = "";
 
         const result = await createUser(emailInput, passwordInput);
 
