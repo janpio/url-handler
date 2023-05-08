@@ -19,7 +19,7 @@ export async function urlGenerator(url, session) {
             data: {
                 givenUrl: newUrl,
                 generatedUrl: generateShortUrl(),
-                createdById: user.id,
+                createdById: user.id ?? null,
             },
         });
         return result.generatedUrl;

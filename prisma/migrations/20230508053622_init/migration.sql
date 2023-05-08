@@ -86,9 +86,6 @@ CREATE UNIQUE INDEX "VerificationRequest_identifier_token_key" ON "VerificationR
 -- CreateIndex
 CREATE UNIQUE INDEX "Url_generatedUrl_key" ON "Url"("generatedUrl");
 
--- CreateIndex
-CREATE UNIQUE INDEX "Url_givenUrl_key" ON "Url"("givenUrl");
-
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 

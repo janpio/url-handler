@@ -63,7 +63,7 @@ model VerificationRequest {
 
 model Url {
   id           String   @id @default(cuid())
-  givenUrl     String   @unique
+  givenUrl     String 
   generatedUrl String?  @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

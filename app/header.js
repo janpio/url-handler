@@ -20,8 +20,8 @@ export default function Header() {
     };
     return (
         <header className="fixed top-0 left-0 right-0 z-50">
-            <nav className="flex items-center justify-between bg-red-500 bg-opacity-30 backdrop-filter backdrop-blur-lg p-4">
-                <Link href="/">Home</Link>
+            <nav className="flex items-center justify-between bg-gradient-to-r from-red-800/70 via-red-400 to-red-800/80 backdrop-filter backdrop-blur-lg p-4">
+                <Link className="text-white font-bold" href="/">Home</Link>
                 <LoginHandler />
             </nav>
         </header>
