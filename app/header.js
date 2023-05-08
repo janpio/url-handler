@@ -16,14 +16,15 @@ export default async function Header() {
                 <Link className="text-white font-bold" href="/">
                     Home
                 </Link>
-                <Image
-                    src={session?.user?.image}
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                    alt="profile"
-                />
-
+                {session?.user?.email && (
+                    <Image
+                        src={session?.user?.image}
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                        alt="profile picture"
+                    />
+                )}
                 <LoginHandler />
             </nav>
         </header>
