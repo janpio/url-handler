@@ -3,7 +3,6 @@ import { Box, TextField, Button } from "@mui/material";
 import { useState } from "react";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import { styled } from "@mui/material/styles";
-import { useParams, usePathname, useRouter } from "next/navigation";
 
 const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
@@ -73,17 +72,19 @@ export default function UrlHandler(props) {
                         Generate Short URL
                     </button>
                 </Box>
-                <div style={{ display: "flex", alignItems: "center" }} className="justify-between mt-2 h-12 w-full border border-cyan-500 px-4 py-1 rounded-lg">
-                    <p className="text-sm text-center">{genLink}</p>
-                <button
-                    onClick={() => copyUrl(genLink)}
-                    className="px-6 bg-cyan-500 text-white hover:bg-cyan-400 transition-all duration-300 ease-in shadow-md h-full shadow-slate-600"
+                <div
+                    style={{ display: "flex", alignItems: "center" }}
+                    className="justify-between mt-2 h-12 w-full border border-cyan-500 px-4 py-1 rounded-lg"
                 >
-                   <FileCopyIcon  />
-                </button>
+                    <p className="text-sm text-center">{genLink}</p>
+                    <button
+                        onClick={() => copyUrl(genLink)}
+                        className="px-6 bg-cyan-500 text-white hover:bg-cyan-400 transition-all duration-300 ease-in shadow-md h-full shadow-slate-600"
+                    >
+                        <FileCopyIcon />
+                    </button>
+                </div>
             </div>
-            </div>
-            
         </div>
     );
 }
