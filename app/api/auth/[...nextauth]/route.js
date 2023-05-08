@@ -25,7 +25,7 @@ const handler = NextAuth({
                 },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(credentials, req) {
+            async authorize(credentials) {
                 const user = prisma.user.findUnique({
                     where: { email: credentials.username },
                 });
@@ -36,8 +36,6 @@ const handler = NextAuth({
                     );
                     if (isMatch) {
                         return user;
-                    } else {
-                        return null;
                     }
                 } else {
                     return null;
