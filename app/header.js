@@ -1,23 +1,12 @@
-"use client";
 import Link from "next/link";
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
 import { getServerSession } from "next-auth";
 export default async function Header() {
     const session = await getServerSession();
     const LoginHandler = () => {
         if (session?.user?.email) {
-            return (
-                <Link href="/api/auth/signout">
-                    <LogoutIcon />
-                </Link>
-            );
+            return <Link href="/api/auth/signout">Login</Link>;
         } else {
-            return (
-                <Link href="/api/auth/signin">
-                    <LoginIcon />
-                </Link>
-            );
+            return <Link href="/api/auth/signin">Logout</Link>;
         }
     };
     return (
