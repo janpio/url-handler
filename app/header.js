@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
+import Image from "next/image";
 export default async function Header() {
     const session = await getServerSession();
     const LoginHandler = () => {
         if (session?.user?.email) {
-            return <Link href="/api/auth/signout">Login</Link>;
+            return <Link href="/api/auth/signout">Logout</Link>;
         } else {
-            return <Link href="/api/auth/signin">Logout</Link>;
+            return <Link href="/api/auth/signin">Login</Link>;
         }
     };
     return (
@@ -15,6 +16,14 @@ export default async function Header() {
                 <Link className="text-white font-bold" href="/">
                     Home
                 </Link>
+                <Image
+                    src={session?.user?.image}
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                    alt="profile"
+                />
+
                 <LoginHandler />
             </nav>
         </header>
