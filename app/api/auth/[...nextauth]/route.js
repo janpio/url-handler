@@ -16,33 +16,6 @@ const handler = NextAuth({
     //     newUser: "/dashboard",
     // },
     providers: [
-        CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-                username: {
-                    label: "Username",
-                    type: "text",
-                    placeholder: "Your username",
-                },
-                password: { label: "Password", type: "password" },
-            },
-            async authorize(credentials) {
-                const user = prisma.user.findUnique({
-                    where: { email: credentials.username },
-                });
-                if (user) {
-                    const isMatch = compare(
-                        credentials.password,
-                        user.password
-                    );
-                    if (isMatch) {
-                        return user;
-                    }
-                } else {
-                    return null;
-                }
-            },
-        }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
