@@ -1,15 +1,6 @@
 "use server";
 import prisma from "@/app/utils/prismaClient";
 
-const pattern = /^(https?:\/\/)?([\w.-]+)\.([a-zA-Z]{2,6})(\/[\w.-]*)*\/?$/;
-const googleDrivePattern = /drive\.google\.com\/file\/d\/(.+?)\/.*$/;
-const dropboxPattern = /www\.dropbox\.com\/(.+?)\/(.+?)$/;
-const megaPattern = /mega\.nz\/(#!|file\/|)[!a-zA-Z0-9_-]{8,}$/;
-const onedrivePattern = /1drv\.ms\/(u\/s\/|s\/)[!a-zA-Z0-9_-]{15,}$/;
-const boxPattern = /app\.box\.com\/s\/[a-zA-Z0-9_-]+$/;
-const icloudPattern = /www\.icloud\.com\/.*$/;
-const wetransferPattern = /wetransfer\.com\/downloads\/[a-zA-Z0-9]{10}$/;
-
 export async function urlGenerator(url, session) {
     let newUrl = url;
     if (googleDrivePattern.test(url)) {
@@ -17,28 +8,21 @@ export async function urlGenerator(url, session) {
             googleDrivePattern,
             "https://drive.google.com/uc?id=$1&export=download"
         );
-        return newUrl;
     } else if (dropboxPattern.test(url)) {
         newUrl = url.replace(
             dropboxPattern,
             "https://www.dropbox.com/s/$1/$2?dl=1"
         );
-        return newUrl;
     } else if (megaPattern.test(url)) {
         newUrl = "https://mega.nz/" + url.replace("mega.nz/", "#!") + "#mega";
-        return newUrl;
     } else if (onedrivePattern.test(url)) {
         newUrl = newUrl.replace("1drv.ms/", "1drv.ws/");
-        return newUrl;
     } else if (boxPattern.test(url)) {
         newUrl = newUrl.replace("app.box.com/", "app.box.com/index.php");
-        return newUrl;
     } else if (icloudPattern.test(url)) {
         newUrl = url.replace("www.icloud.com/", "www.icloud.com/");
-        return newUrl;
     } else if (wetransferPattern.test(url)) {
         newUrl = url + "/download";
-        return newUrl;
     } else if (pattern.test(url) !== true) {
         throw new Error("Invalid URL");
     }
