@@ -1,27 +1,31 @@
 import "./globals.css";
-import { Inter, Stylish } from "next/font/google";
-
+import { Inter } from "next/font/google";
 import Header from "./header";
-
-export const Sttylish = Stylish({
-    subsets: ["latin"],
-    weight: "400",
-    variable: "--font-stylish",
-});
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
     title: "URL Handler",
-    description: "Created By Istiak Hassan Emon",
+    description: "Shorten your URLs with this service",
 };
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
-            <body className={`bg-white ${inter.className} pt-16`}>
+        <html lang="en" className="h-full">
+            <body
+                className={`bg-slate-100/10 ${inter.className} pt-16 flex flex-col h-full`}
+            >
                 <Header />
-                {children}
-            <footer className="h-24 w-full bg-gray-200"></footer>
+                <main className="flex-grow">{children}</main>
+                <footer className="flex w-full h-12 bg-red-500/30 items-center justify-center">
+                    <Link
+                        className="hover:text-blue-400"
+                        href={"https://nexisltd.com"}
+                    >
+                        Nexis LTD. &copy; {new Date().getFullYear()} | All
+                        Rights Reserved.
+                    </Link>
+                </footer>
             </body>
         </html>
     );
