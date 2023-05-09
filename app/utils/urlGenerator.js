@@ -16,7 +16,7 @@ export async function urlGenerator(url, session) {
     if (googleDrivePattern.test(url)) {
         newUrl = url.replace(/file\/d\/(.+?)\/.*$/, "uc?id=$1&export=download");
     } else if (dropboxPattern.test(url)) {
-        newUrl = url.replace(dropboxPattern, "https://www.dropbox.com/$1?dl=1");
+        newUrl = url.replace("dl=0", "dl=1");
     } else if (megaPattern.test(url)) {
         newUrl = "https://mega.nz/" + url.replace("mega.nz/", "#!") + "#mega";
     } else if (onedrivePattern.test(url)) {
