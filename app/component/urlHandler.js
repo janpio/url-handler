@@ -49,7 +49,8 @@ export default function UrlHandler(props) {
                     Shorten your URL in seconds
                 </h1>
                 <p className="text-sm text-center mb-6">
-                    google drive links are untraceable
+                    Makes Downloadable Links Imperceptible, Normal Links Just
+                    Shorten
                 </p>
                 <Box sx={{ width: "100%" }}>
                     <CssTextField
