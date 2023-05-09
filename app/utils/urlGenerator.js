@@ -3,7 +3,7 @@ import prisma from "@/app/utils/prismaClient";
 
 const pattern = /^(https?:\/\/)?([\w.-]+)\.([a-zA-Z]{2,6})(\/[\w.-]*)*\/?$/;
 const googleDrivePattern =
-    /(?:https?:\/\/)?(?:drive\.google\.com\/(?:file\/d\/|open\?id=)|docs\.google\.com\/(?:uc\?id=|file\/d\/))(.*?)(&|$)/;
+    /(?:https?:\/\/)?(?:drive\.google\.com\/(?:file\/d\/|open\?id=)|docs\.google\.com\/(?:uc\?id=|file\/d\/))(.*?)(?:\/.+)?(?:\?|$)/;
 const dropboxPattern = /(?:https?:\/\/)?(?:www\.)?dropbox\.com\/(?:.+)\/(.+)/;
 const megaPattern = /mega\.nz\/(#!|file\/|)[!a-zA-Z0-9_-]{8,}$/;
 const onedrivePattern = /1drv\.ms\/(u\/s\/|s\/)[!a-zA-Z0-9_-]{15,}$/;
@@ -14,10 +14,7 @@ const wetransferPattern = /wetransfer\.com\/downloads\/[a-zA-Z0-9]{10}$/;
 export async function urlGenerator(url, session) {
     let newUrl = url;
     if (googleDrivePattern.test(url)) {
-        newUrl = url.replace(
-            googleDrivePattern,
-            "https://drive.google.com/uc?id=$1&export=download"
-        );
+        newUrl = url.replace(/file\/d\/(.+?)\/.*$/, "uc?id=$1&export=download");
     } else if (dropboxPattern.test(url)) {
         newUrl = url.replace(dropboxPattern, "https://www.dropbox.com/$1?dl=1");
     } else if (megaPattern.test(url)) {
