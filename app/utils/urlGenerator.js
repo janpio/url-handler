@@ -35,7 +35,7 @@ export async function urlGenerator(url, session) {
         await sendEmail(
             session.user.email,
             "Your have shortened a new URL",
-            `https://url.nexisltd.com/d/${result.generatedUrl}`
+            `${process.env.NEXTAUTH_URL}/d/${result.generatedUrl}`
         );
         return result.generatedUrl;
     } catch (error) {
