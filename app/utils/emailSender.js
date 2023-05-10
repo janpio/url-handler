@@ -16,7 +16,7 @@ const sendEmail = async (to, subject, url) => {
         });
 
         const mailOptions = {
-            from: "info@nexisltd.com",
+            from: process.env.FROM_EMAIL,
             to,
             subject,
             html: `
