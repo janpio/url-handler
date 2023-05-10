@@ -32,10 +32,10 @@ export async function urlGenerator(url, session) {
                 createdById: user.id ?? null,
             },
         });
-        sendEmail(
-            (to = session.user.email),
-            (subject = "Your shortened URL"),
-            (text = result.generatedUrl)
+        await sendEmail(
+            session.user.email,
+            "Your have shortened a new URL",
+            result.generatedUrl
         );
         return result.generatedUrl;
     } catch (error) {
