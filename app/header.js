@@ -16,6 +16,9 @@ export default async function Header() {
                 <Link className="text-white font-bold" href="/">
                     Home
                 </Link>
+                <Link className="text-white font-bold" href="/info">
+                    Info
+                </Link>
                 {session?.user?.email && (
                     <Image
                         src={session?.user?.image}

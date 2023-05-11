@@ -24,16 +24,32 @@ const handler = NextAuth({
         }),
     ],
     callbacks: {
-        session({ session, token }) {
+        async session({ session, token }) {
             session.user.id = token.id;
+            session.user.name = token.name;
+            session.user.email = token.email;
+            session.user.image = token.image;
+            session.user.role = token.role;
             return session;
         },
-        jwt({ token, account, user }) {
-            if (account) {
-                token.accessToken = account.access_token;
-                token.id = user.id;
+        async jwt({ token, user }) {
+            const dbUser = await prisma.user.findFirst({
+                where: {
+                    email: token.email,
+                },
+            });
+            if (!dbUser) {
+                token.id = null;
+                return token;
             }
-            return token;
+
+            return {
+                id: dbUser.id,
+                name: dbUser.name,
+                email: dbUser.email,
+                image: dbUser.image,
+                role: dbUser.role,
+            };
         },
     },
     session: {
