@@ -33,7 +33,7 @@ const handler = NextAuth({
             return session;
         },
         async jwt({ token, user }) {
-            const dbUser = await prisma.user.findFirst({
+            const dbUser = await prisma.User.findFirst({
                 where: {
                     email: token.email,
                 },
@@ -42,7 +42,6 @@ const handler = NextAuth({
                 token.id = null;
                 return token;
             }
-
             return {
                 id: dbUser.id,
                 name: dbUser.name,
