@@ -21,7 +21,10 @@ export default async function Header() {
                 </Link>
                 {session?.user?.email && (
                     <Image
-                        src={session?.user?.image}
+                        src={
+                            session?.user?.image ||
+                            "https://img.icons8.com/nolan/96/user-default.png"
+                        }
                         width={40}
                         height={40}
                         className="rounded-full"

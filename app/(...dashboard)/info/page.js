@@ -1,3 +1,11 @@
-export default function Info() {
-    return <div>Info</div>;
+import SSession from "./serverSession";
+import CSession from "./clientSession";
+
+export default async function Info() {
+    return (
+        <>
+            <SSession />
+            <CSession />
+        </>
+    );
 }

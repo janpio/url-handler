@@ -4,15 +4,8 @@ import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/app/utils/prismaClient";
 
-const handler = NextAuth({
+export const authOptions = {
     adapter: PrismaAdapter(prisma),
-    // pages: {
-    //     signIn: "/auth/signin",
-    //     signOut: "/auth/signout",
-    //     error: "/auth/error",
-    //     verifyRequest: "/auth/verify-request",
-    //     newUser: "/dashboard",
-    // },
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
@@ -24,6 +17,31 @@ const handler = NextAuth({
         }),
     ],
     callbacks: {
+        async jwt({ token, user }) {
+            const userDb = async () => {
+                try {
+                    return await prisma.user.findFirst({
+                        where: {
+                            email: token.email,
+                        },
+                    });
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    await prisma.$disconnect();
+                }
+            };
+            const dbUser = await userDb();
+            if (!dbUser) {
+                return null;
+            }
+            token.id = dbUser.id;
+            token.name = dbUser.name;
+            token.email = dbUser.email;
+            token.image = dbUser.image;
+            token.role = dbUser.role;
+            return token;
+        },
         async session({ session, token }) {
             session.user.id = token.id;
             session.user.name = token.name;
@@ -32,28 +50,11 @@ const handler = NextAuth({
             session.user.role = token.role;
             return session;
         },
-        async jwt({ token, user }) {
-            const dbUser = await prisma.User.findFirst({
-                where: {
-                    email: token.email,
-                },
-            });
-            if (!dbUser) {
-                token.id = null;
-                return token;
-            }
-            return {
-                id: dbUser.id,
-                name: dbUser.name,
-                email: dbUser.email,
-                image: dbUser.image,
-                role: dbUser.role,
-            };
-        },
     },
     session: {
         strategy: "jwt",
     },
-});
+};
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
