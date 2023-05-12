@@ -24,7 +24,7 @@ export default function LeftNavigations() {
     const pageRefs = [
         { name: "info", path: "/info" },
         { name: "setting", path: "/settings" },
-        { name: "logout", path: "/api/" },
+        { name: "logout", path: "/api/auth/signout" },
     ];
 
     return (
