@@ -12,17 +12,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className="h-full">
-            <body
-                className={`bg-slate-100/10 ${inter.className} pt-16 flex flex-col h-full`}
-            >
+        <html lang="en">
+            <body className={`${inter.className}`}>
                 <Header />
                 <main className="flex-grow">
                     <Provider>{children}</Provider>
                 </main>
-                <footer className="flex w-full h-12 bg-red-500/30 items-center justify-center">
+                <footer className="btm-nav bg-neutral">
                     <Link
-                        className="hover:text-blue-400"
+                        className="link-primary"
                         href={"https://nexisltd.com"}
                     >
                         Nexis LTD. &copy; {new Date().getFullYear()} | All

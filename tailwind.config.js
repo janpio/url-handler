@@ -5,14 +5,67 @@ module.exports = {
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
-    theme: {
-        extend: {
-            backgroundImage: {
-                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "gradient-conic":
-                    "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+    daisyui: {
+        styled: true,
+        themes: true,
+        base: true,
+        utils: true,
+        logs: true,
+        rtl: false,
+        prefix: "",
+        darkTheme: "dark",
+        themes: [
+            "light",
+            "dark",
+            "cupcake",
+            "bumblebee",
+            "emerald",
+            "corporate",
+            "synthwave",
+            "retro",
+            "cyberpunk",
+            "valentine",
+            "halloween",
+            "garden",
+            "forest",
+            "aqua",
+            "lofi",
+            "pastel",
+            "fantasy",
+            "wireframe",
+            "black",
+            "luxury",
+            "dracula",
+            "cmyk",
+            "autumn",
+            "business",
+            "acid",
+            "lemonade",
+            "night",
+            "coffee",
+            "winter",
+            {
+                fav: {
+                    primary: "#c45fe2",
+
+                    secondary: "#584dd1",
+
+                    accent: "#e05814",
+
+                    neutral: "#261929",
+
+                    "base-100": "#2F2C44",
+
+                    info: "#94BAF0",
+
+                    success: "#5CE0B6",
+
+                    warning: "#FB9918",
+
+                    error: "#F36271",
+                },
             },
-        },
+        ],
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };

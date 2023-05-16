@@ -9,6 +9,7 @@ const dropboxPattern = /(?:https?:\/\/)?(?:www\.)?dropbox\.com\/(?:.+)\/(.+)/;
 const megaPattern = /mega\.nz\/(#!|file\/|)[!a-zA-Z0-9_-]{8,}$/;
 
 export async function urlGenerator(url, session) {
+    console.log(url);
     let newUrl = url;
     if (googleDrivePattern.test(url)) {
         newUrl = url.replace(/file\/d\/(.+?)\/.*$/, "uc?id=$1&export=download");
