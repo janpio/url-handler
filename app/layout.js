@@ -15,10 +15,8 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <body className={`${inter.className}`}>
                 <Header />
-                <main className="flex-grow">
-                    <Provider>{children}</Provider>
-                </main>
-                <footer className="btm-nav bg-neutral">
+                <Provider>{children}</Provider>
+                <footer className="bg-neutral footer footer-center p-4 text-neutral-content">
                     <Link
                         className="link-primary"
                         href={"https://nexisltd.com"}

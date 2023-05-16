@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
+import Image from "next/image";
 
 export default function UrlHandler(props) {
     const fullURLClientSide =
@@ -62,7 +62,12 @@ export default function UrlHandler(props) {
                         onClick={() => copyUrl(genLink)}
                         className="btn btn-secondary shadow-md h-3/6 "
                     >
-                        <FileCopyIcon />
+                        <Image
+                            src="https://img.icons8.com/material/24/copy--v1.png"
+                            width={24}
+                            height={24}
+                            alt="File Copy"
+                        />
                     </button>
                 </div>
             </div>

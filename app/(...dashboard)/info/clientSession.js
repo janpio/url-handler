@@ -4,5 +4,9 @@ import { useSession } from "next-auth/react";
 export default function CSession() {
     const { data } = useSession();
 
-    return <div>Client session:{JSON.stringify(data?.user)}</div>;
+    return (
+        <div>
+            <h1>Client session:{JSON.stringify(data?.user)}</h1>
+        </div>
+    );
 }
