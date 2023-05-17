@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
-import ThemeChanger from "./component/themeChange";
 import Image from "next/image";
 import logo from "../public/logo.png";
 
@@ -36,14 +35,11 @@ export default async function Header() {
     };
 
     return (
-        <header className="navbar bg-neutral">
+        <header className="navbar bg-neutral fixed top-0">
             <div className="navbar-start">
                 <Link href="/">
                     <Image src={logo} width={64} height={64} alt="logo"></Image>
                 </Link>
-            </div>
-            <div className="navbar-center">
-                <ThemeChanger />
             </div>
             <div className="navbar-end">
                 {session?.user?.email ? (
@@ -81,7 +77,7 @@ export default async function Header() {
                             className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                         >
                             <li>
-                                <Link href="/info">
+                                <Link href="/dashboard">
                                     <Image
                                         width={24}
                                         height={24}
@@ -89,6 +85,28 @@ export default async function Header() {
                                         src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/external-dashboard-user-interface-kmg-design-detailed-outline-kmg-design.png"
                                     />
                                     <p>Dashboard</p>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/profile">
+                                    <Image
+                                        width={24}
+                                        height={24}
+                                        alt="profile"
+                                        src="https://img.icons8.com/material-outlined/24/user-group-man-man.png"
+                                    />
+                                    <p>Profile</p>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/settings">
+                                    <Image
+                                        width={24}
+                                        height={24}
+                                        alt="settings"
+                                        src="https://img.icons8.com/ios-filled/50/settings.png"
+                                    />
+                                    <p>Settings</p>
                                 </Link>
                             </li>
                             <li>

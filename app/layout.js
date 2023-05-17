@@ -16,7 +16,9 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <body className={`${inter.className}`}>
                 <Header />
-                <Provider>{children}</Provider>
+                <Provider>
+                    <div className="flex mt-24 px-12">{children}</div>
+                </Provider>
                 <footer className="bg-neutral footer footer-center p-4 text-neutral-content fixed bottom-0 ">
                     <Link
                         className="link-primary"
