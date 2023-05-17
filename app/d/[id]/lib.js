@@ -4,8 +4,6 @@ import prisma from "@/app/utils/prismaClient";
 export default async function UrlDownloader(id) {
     try {
         let data = await kv.get(id);
-        if (data) {
-        }
         if (!data) {
             const urlData = await prisma.url.findFirst({
                 where: {
@@ -23,7 +21,6 @@ export default async function UrlDownloader(id) {
                 data = null;
             }
         }
-
         return data;
     } catch (error) {
         console.error("Error retrieving data:", error);
