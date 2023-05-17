@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import UrlDownloader from "./lib";
 
 export default async function FileDownloader({ params: { id } }) {
@@ -6,6 +6,6 @@ export default async function FileDownloader({ params: { id } }) {
     if (link) {
         redirect(link);
     } else {
-        return <p>something went wrong</p>;
+        notFound();
     }
 }

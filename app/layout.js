@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Header from "./header";
 import Link from "next/link";
 import Provider from "./provider";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -16,7 +17,7 @@ export default function RootLayout({ children }) {
             <body className={`${inter.className}`}>
                 <Header />
                 <Provider>{children}</Provider>
-                <footer className="bg-neutral footer footer-center p-4 text-neutral-content">
+                <footer className="bg-neutral footer footer-center p-4 text-neutral-content fixed bottom-0 ">
                     <Link
                         className="link-primary"
                         href={"https://nexisltd.com"}

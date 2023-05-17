@@ -1,4 +1,4 @@
-import kv from "@vercel/kv";
+import { kv } from "@vercel/kv";
 import prisma from "@/app/utils/prismaClient";
 
 export default async function UrlDownloader(id) {
@@ -20,7 +20,7 @@ export default async function UrlDownloader(id) {
                 await kv.set(id, givenUrl);
                 data = givenUrl;
             } else {
-                throw new Error("Given URL not found");
+                data = null;
             }
         }
 
