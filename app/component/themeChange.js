@@ -34,15 +34,15 @@ const ThemeChanger = () => {
         "coffee",
         "winter",
         "fav",
+        "myTheme",
     ];
-    const [selectedTheme, setSelectedTheme] = useState("night");
+    const [selectedTheme, setSelectedTheme] = useState("light");
 
     useEffect(() => {
         themeChange(false);
     });
 
     const handleThemeChange = (event) => {
-        console.log(event.target.value);
         setSelectedTheme(event.target.value);
     };
 

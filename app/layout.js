@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
                 <Provider>
                     <div className="flex mt-24 px-12">{children}</div>
                 </Provider>
-                <footer className="bg-neutral footer footer-center p-4 text-neutral-content fixed bottom-0 ">
+                <footer className="bg-accent footer footer-center p-4 text-neutral-content fixed bottom-0 ">
                     <Link
                         className="link-primary"
                         href={"https://nexisltd.com"}

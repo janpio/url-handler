@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import logo from "../public/logo.png";
+import ThemeChanger from "./component/themeChange";
 
 export default async function Header() {
     const session = await getServerSession();
@@ -35,11 +36,14 @@ export default async function Header() {
     };
 
     return (
-        <header className="navbar bg-neutral fixed top-0">
+        <header className="navbar bg-accent fixed top-0">
             <div className="navbar-start">
                 <Link href="/">
                     <Image src={logo} width={64} height={64} alt="logo"></Image>
                 </Link>
+            </div>
+            <div className="navbar-center hidden">
+                <ThemeChanger />
             </div>
             <div className="navbar-end">
                 {session?.user?.email ? (

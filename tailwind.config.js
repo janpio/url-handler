@@ -65,6 +65,27 @@ module.exports = {
                     error: "#F36271",
                 },
             },
+            {
+                mytheme: {
+                    primary: "#9fe544",
+
+                    secondary: "#f2b648",
+
+                    accent: "#030191",
+
+                    neutral: "#352A37",
+
+                    "base-100": "#2F3642",
+
+                    info: "#3B5CC9",
+
+                    success: "#1DD7A6",
+
+                    warning: "#FBDE51",
+
+                    error: "#E6376C",
+                },
+            },
         ],
     },
     plugins: [require("@tailwindcss/typography"), require("daisyui")],

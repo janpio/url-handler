@@ -22,7 +22,7 @@ export default function UrlHandler(props) {
 
     return (
         <div className="flex w-screen h-[85vh] items-center">
-            <div className="max-w-[90vw] md:max-w-[50vw] xl:min-w-[22vw] sm:h-[35vh] md:h-[50vh] p-4 md:p-10 rounded-lg shadow-md bg-accent flex flex-col justify-center items-center mx-4 md:mx-12 xl:mx-16">
+            <div className="max-w-[90vw] md:max-w-[50vw] xl:min-w-[22vw] sm:h-[35vh] md:h-[50vh] p-4 md:p-10 rounded-lg shadow-md bg-neutral flex flex-col justify-center items-center mx-4 md:mx-12 xl:mx-16">
                 <h1 className="text-xl font-bold text-center">
                     Shorten your URL in seconds
                 </h1>
