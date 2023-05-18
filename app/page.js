@@ -1,12 +1,12 @@
 import { getServerSession } from "next-auth";
 import UrlHandler from "./component/urlHandler";
-import { urlGenerator } from "./utils/urlGenerator";
 import { Analytics } from "@vercel/analytics/react";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 export default async function Home() {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     return (
         <>
-            <UrlHandler fn={urlGenerator} session={session} />
+            <UrlHandler session={session} />
             <Analytics />
         </>
     );

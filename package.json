@@ -16,7 +16,6 @@
     "@vercel/analytics": "^1.0.1",
     "@vercel/kv": "^0.2.0",
     "aws-sdk": "^2.1375.0",
-    "daisyui": "^2.51.6",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
     "next": "13.4.2",
@@ -32,6 +31,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.14",
-    "postcss": "8.4.23"
+    "postcss": "8.4.23",
+    "daisyui": "^2.51.6"
   }
 }

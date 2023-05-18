@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { urlGenerator } from "@/app/lib/urlGenerator";
+import { revalidatePath } from "next/cache";
 
-export default function UrlHandler(props) {
+export default function UrlHandler({ session }) {
     const fullURLClientSide =
         typeof window !== "undefined" && window.location.href;
     const [link, setLink] = useState("");
@@ -41,11 +43,12 @@ export default function UrlHandler(props) {
                     <button
                         className="btn btn-primary"
                         onClick={async () => {
-                            const output = await props.fn(link, props.session);
+                            const output = await urlGenerator(link, session);
                             const newUrl = `${fullURLClientSide}d/${output}`;
                             copyUrl(newUrl);
                             setGenLink(newUrl);
                             setLink("");
+                            revalidatePath("dashboard");
                         }}
                     >
                         Generate Short URL

@@ -1,5 +1,5 @@
 import { kv } from "@vercel/kv";
-import prisma from "@/app/utils/prismaClient";
+import prisma from "@/app/lib/prismaClient";
 
 export default async function UrlDownloader(id) {
     try {

@@ -1,5 +1,5 @@
 "use server";
-import prisma from "@/app/utils/prismaClient";
+import prisma from "./prismaClient";
 import sendEmail from "./emailSender";
 
 const pattern = /^(https?:\/\/)?([\w.-]+)\.([a-zA-Z]{2,6})(\/[\w.-]*)*\/?$/;
@@ -9,7 +9,6 @@ const dropboxPattern = /(?:https?:\/\/)?(?:www\.)?dropbox\.com\/(?:.+)\/(.+)/;
 const megaPattern = /mega\.nz\/(#!|file\/|)[!a-zA-Z0-9_-]{8,}$/;
 
 export async function urlGenerator(url, session) {
-    console.log(url);
     let newUrl = url;
     if (googleDrivePattern.test(url)) {
         newUrl = url.replace(/file\/d\/(.+?)\/.*$/, "uc?id=$1&export=download");
@@ -18,26 +17,29 @@ export async function urlGenerator(url, session) {
     } else if (megaPattern.test(url)) {
         newUrl = "https://mega.nz/" + url.replace("mega.nz/", "#!") + "#mega";
     } else if (pattern.test(url) !== true) {
+        //I should not
+        newUrl = url;
+    } else if (url !== "" || url === null) {
+        newUrl = url;
+    } else {
         throw new Error("Invalid URL");
     }
     try {
-        const user = await prisma.user.findUnique({
-            where: {
-                email: session.user.email,
-            },
-        });
         const result = await prisma.url.create({
             data: {
                 givenUrl: newUrl,
                 generatedUrl: generateShortUrl(),
-                createdById: user.id ?? null,
+                createdById: session?.user?.id ?? null,
             },
         });
-        await sendEmail(
-            session.user.email,
-            "Your have shortened a new URL",
-            `${process.env.NEXTAUTH_URL}/d/${result.generatedUrl}`
-        );
+        process.env.NODE_ENV === "production" &&
+            session &&
+            (await sendEmail(
+                session.user.email,
+                "Your have shortened a new URL",
+                `${process.env.NEXTAUTH_URL}/d/${result.generatedUrl}`
+            ));
+
         return result.generatedUrl;
     } catch (error) {
         console.error(error);
