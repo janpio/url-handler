@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "../public/logo.png";
 import ThemeChanger from "./component/themeChange";
 
-export default async function Header() {
+const Header = async () => {
     const session = await getServerSession();
 
     const LoginHandler = () => {
@@ -124,4 +124,6 @@ export default async function Header() {
             </div>
         </header>
     );
-}
+};
+
+export default Header;

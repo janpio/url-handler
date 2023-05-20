@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { urlGenerator } from "@/app/lib/urlGenerator";
-import { revalidatePath } from "next/cache";
+import urlGenerator from "../lib/urlGenerator";
 
-export default function UrlHandler({ session }) {
+const UrlHandler = ({ session }) => {
     const fullURLClientSide =
         typeof window !== "undefined" && window.location.href;
     const [link, setLink] = useState("");
@@ -48,7 +47,6 @@ export default function UrlHandler({ session }) {
                             copyUrl(newUrl);
                             setGenLink(newUrl);
                             setLink("");
-                            revalidatePath("dashboard");
                         }}
                     >
                         Generate Short URL
@@ -76,4 +74,5 @@ export default function UrlHandler({ session }) {
             </div>
         </div>
     );
-}
+};
+export default UrlHandler;

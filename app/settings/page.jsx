@@ -1,5 +1,6 @@
 import ThemeChanger from "@/app/component/themeChange";
-export default function SettingsPage() {
+
+const SettingsPage=()=> {
     return (
         <div className="flex">
             <h2 className="px-2">Choose your preferred theme:</h2>
@@ -7,3 +8,4 @@ export default function SettingsPage() {
         </div>
     );
 }
+export default SettingsPage

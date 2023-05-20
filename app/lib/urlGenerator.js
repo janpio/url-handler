@@ -8,7 +8,7 @@ const googleDrivePattern =
 const dropboxPattern = /(?:https?:\/\/)?(?:www\.)?dropbox\.com\/(?:.+)\/(.+)/;
 const megaPattern = /mega\.nz\/(#!|file\/|)[!a-zA-Z0-9_-]{8,}$/;
 
-export async function urlGenerator(url, session) {
+const urlGenerator = async (url, session) => {
     let newUrl = url;
     if (googleDrivePattern.test(url)) {
         newUrl = url.replace(/file\/d\/(.+?)\/.*$/, "uc?id=$1&export=download");
@@ -47,7 +47,7 @@ export async function urlGenerator(url, session) {
     } finally {
         await prisma.$disconnect();
     }
-}
+};
 
 const generateShortUrl = () => {
     const characters =
@@ -61,3 +61,5 @@ const generateShortUrl = () => {
     }
     return result;
 };
+
+export default urlGenerator;

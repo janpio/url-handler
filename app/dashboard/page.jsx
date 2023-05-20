@@ -3,7 +3,7 @@ import { urlCount, urlList } from "./lib/urlLists";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-export default async function Dashboard() {
+const Dashboard=async()=> {
     const { user } = await getServerSession(authOptions);
     const urls = await urlList(user);
     const totalUrl = await urlCount(user);
@@ -18,6 +18,9 @@ export default async function Dashboard() {
                         <th>Generated URL</th>
                         <th>Actual URL</th>
                         <th>Generated At</th>
+                        <th>Last Access</th>
+                        <th>Type</th>
+                        <th>Total Clicks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,8 +33,14 @@ export default async function Dashboard() {
                                     target="_blank"
                                 >{`${process.env.NEXTAUTH_URL}/d/${url.generatedUrl}`}</Link>
                             </td>
-                            <td>{url.givenUrl}</td>
+                            <td><Link
+                                    href={`${process.env.NEXTAUTH_URL}/d/${url.generatedUrl}`}
+                                    target="_blank"
+                                >{url.givenUrl}</Link></td>
                             <td>{url.createdAt.toString()}</td>
+                            <td>{url.lastAccessedAt.toString()}</td>
+                            <td>{url.type}</td>
+                            <td>{url.openedCount}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -40,3 +49,5 @@ export default async function Dashboard() {
         </div>
     );
 }
+
+export default Dashboard

@@ -1,31 +1,49 @@
-import { kv } from "@vercel/kv";
 import prisma from "@/app/lib/prismaClient";
 
-export default async function UrlDownloader(id) {
+export const UrlDownloader = async (id) => {
     try {
-        let data = await kv.get(id);
-        if (!data) {
-            const urlData = await prisma.url.findFirst({
-                where: {
-                    generatedUrl: id,
-                },
-                select: {
-                    givenUrl: true,
-                },
-            });
-            if (urlData?.givenUrl) {
-                const { givenUrl } = urlData;
-                await kv.set(id, givenUrl);
-                data = givenUrl;
-            } else {
-                data = null;
-            }
+        const data = await prisma.url.findFirst({
+            where: {
+                generatedUrl: id,
+            },
+            select: {
+                givenUrl: true,
+                id: true,
+            },
+        });
+        if (data?.givenUrl) {
+            const { givenUrl } = data;
+            await updateClick(data?.id);
+            return givenUrl;
+        } else {
+            return null;
         }
-        return data;
     } catch (error) {
         console.error("Error retrieving data:", error);
         return { error: "An error occurred" };
     } finally {
         await prisma.$disconnect();
     }
-}
+};
+
+const updateClick = async (id) => {
+    try {
+        return await prisma.url.update({
+            where: {
+                id: id,
+            },
+            data: {
+                openedCount: {
+                    increment: 1,
+                },
+                lastAccessedAt: {
+                    set: new Date(),
+                },
+            },
+        });
+    } catch (error) {
+        console.log(error);
+    } finally {
+        await prisma.$disconnect();
+    }
+};
