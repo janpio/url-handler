@@ -33,7 +33,7 @@ const UrlHandler = ({ session }) => {
                 </p>
                 <div className="box w-full">
                     <input
-                        type="text"
+                        type="url"
                         placeholder="Enter your link"
                         className="input input-bordered input-primary w-full max-w-xs"
                         onChange={(value) => setLink(value.target.value)}

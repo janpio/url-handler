@@ -1,6 +1,7 @@
 "use server";
 import prisma from "./prismaClient";
 import sendEmail from "./emailSender";
+import { revalidatePath } from "next/cache";
 
 const pattern = /^(https?:\/\/)?([\w.-]+)\.([a-zA-Z]{2,6})(\/[\w.-]*)*\/?$/;
 const googleDrivePattern =
@@ -46,6 +47,7 @@ const urlGenerator = async (url, session) => {
         throw new Error("Failed to create URL");
     } finally {
         await prisma.$disconnect();
+        revalidatePath("/dashboard");
     }
 };
 

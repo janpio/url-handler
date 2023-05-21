@@ -1,18 +1,16 @@
 "use client";
+
 import { getSession } from "next-auth/react";
 import { deleteAccount } from "./lib/deleteAccount";
-import { redirect } from "next/navigation";
-
-export const revalidate = 60;
+import { destroyCookie } from "nookies";
 
 const Profile = () => {
     const handleDelete = async () => {
         const session = await getSession();
         if (session) {
-            const isDeleted = await deleteAccount(session?.user?.id);
-            if (isDeleted) {
-                redirect("/");
-            }
+            destroyCookie(name="next-auth.session-token"),
+            await deleteAccount(session?.user?.id);
+            window.location.href = "/";
         }
     };
     return (
