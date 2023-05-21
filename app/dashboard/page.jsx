@@ -38,7 +38,7 @@ const Dashboard=async()=> {
                                     target="_blank"
                                 >{url.givenUrl}</Link></td>
                             <td>{url.createdAt.toString()}</td>
-                            <td>{url.lastAccessedAt.toString()}</td>
+                            <td>{url.lastAccessedAt && url.lastAccessedAt.toString()}</td>
                             <td>{url.type}</td>
                             <td>{url.openedCount}</td>
                         </tr>
