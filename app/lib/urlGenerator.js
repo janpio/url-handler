@@ -2,6 +2,7 @@
 import prisma from "./prismaClient";
 import sendEmail from "./emailSender";
 import { revalidatePath } from "next/cache";
+import baseUrl from "./url";
 
 const pattern = /^(https?:\/\/)?([\w.-]+)\.([a-zA-Z]{2,6})(\/[\w.-]*)*\/?$/;
 const googleDrivePattern =
@@ -38,7 +39,7 @@ const urlGenerator = async (url, session) => {
             (await sendEmail(
                 session.user.email,
                 "Your have shortened a new URL",
-                `${process.env.NEXTAUTH_URL}/d/${result.generatedUrl}`
+                `${baseUrl}/d/${result.generatedUrl}`
             ));
 
         return result.generatedUrl;

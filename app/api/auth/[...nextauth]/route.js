@@ -17,7 +17,7 @@ export const authOptions = {
         }),
     ],
     callbacks: {
-        async jwt({ token, user }) {
+        async jwt({ token }) {
             const userDb = async () => {
                 try {
                     return await prisma.user.findFirst({
