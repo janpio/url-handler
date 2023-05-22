@@ -220,9 +220,9 @@
   integrity sha512-APqFddPVHYmWNKqc+5J5SqrLFfOghKOLZxobmguDUacxOwdEutLsbXPVhNnpFDmuQWQFbXmrTTPoRrrF6B1MWA==
 
 "@rushstack/eslint-patch@^1.1.3":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz#8be36a1f66f3265389e90b5f9c9962146758f728"
-  integrity sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.3.0.tgz#f5635b36fc0dad96ef1e542a302cd914230188c0"
+  integrity sha512-IthPJsJR85GhOkp3Hvp8zFOPK5ynKn6STyHa/WZpioK7E1aYDiBzpqQPrngc14DszIUkIrdd3k9Iu0XSzlP/1w==
 
 "@swc/helpers@0.5.1":
   version "0.5.1"
@@ -240,6 +240,40 @@
     lodash.isplainobject "^4.0.6"
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
+
+"@tanstack/eslint-plugin-query@^4.29.8":
+  version "4.29.8"
+  resolved "https://registry.yarnpkg.com/@tanstack/eslint-plugin-query/-/eslint-plugin-query-4.29.8.tgz#20cdbeedaff8a956b808eeb4789d248e3a43f634"
+  integrity sha512-w3tMVl8gZRiEdCoKweK07OkSPROFJ/hGJWdUcrfpWoTg8eaw7IWLMXWZJZKQEF2j1Aq6YkWBwuTF8QmZvVzVZA==
+
+"@tanstack/match-sorter-utils@^8.7.0":
+  version "8.8.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/match-sorter-utils/-/match-sorter-utils-8.8.4.tgz#0b2864d8b7bac06a9f84cb903d405852cc40a457"
+  integrity sha512-rKH8LjZiszWEvmi01NR72QWZ8m4xmXre0OOwlRGnjU01Eqz/QnN+cqpty2PJ0efHblq09+KilvyR7lsbzmXVEw==
+  dependencies:
+    remove-accents "0.4.2"
+
+"@tanstack/query-core@4.29.7":
+  version "4.29.7"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.29.7.tgz#9fe4587e23cb9566b937c518ffa44226041d388d"
+  integrity sha512-GXG4b5hV2Loir+h2G+RXhJdoZhJLnrBWsuLB2r0qBRyhWuXq9w/dWxzvpP89H0UARlH6Mr9DiVj4SMtpkF/aUA==
+
+"@tanstack/react-query-devtools@^4.29.7":
+  version "4.29.7"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-4.29.7.tgz#1e2b742b144748efa3ae0f0f7abe945fb4179085"
+  integrity sha512-fckNnBV6Kfbtq6EJqQen8oBjPqGFcOPS9SJmNKLbFLQgd7OpNIlA4M0r37iJYUY9m14/ESKc1wzKd36VfeiPjg==
+  dependencies:
+    "@tanstack/match-sorter-utils" "^8.7.0"
+    superjson "^1.10.0"
+    use-sync-external-store "^1.2.0"
+
+"@tanstack/react-query@^4.29.7":
+  version "4.29.7"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.29.7.tgz#772996905a81ca64172582891c5a82e88dbafccd"
+  integrity sha512-ijBWEzAIo09fB1yd22slRZzprrZ5zMdWYzBnCg5qiXuFbH78uGN1qtGz8+Ed4MuhaPaYSD+hykn+QEKtQviEtg==
+  dependencies:
+    "@tanstack/query-core" "4.29.7"
+    use-sync-external-store "^1.2.0"
 
 "@types/json5@^0.0.29":
   version "0.0.29"
@@ -661,6 +695,13 @@ cookie@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
   integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
+
+copy-anything@^3.0.2:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/copy-anything/-/copy-anything-3.0.4.tgz#a9675339d260f7cec4a58e401565e302c15d9a17"
+  integrity sha512-MaQ9FwzlZ/KLeVCLhzI3rZw0EhrIryfZa3AyT4agVybR0DjlkDHA8898lamLD6kfkf9MMn8D+zDAUR4+GxaymQ==
+  dependencies:
+    is-what "^4.1.8"
 
 cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
@@ -1721,6 +1762,11 @@ is-weakset@^2.0.1:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
 
+is-what@^4.1.8:
+  version "4.1.10"
+  resolved "https://registry.yarnpkg.com/is-what/-/is-what-4.1.10.tgz#f058289f9ed83483fe819721b28c88ce4a4ddb52"
+  integrity sha512-JBy26nXqBUwzTfgj6T5Y/UgXSmRd+03FTq5v3P+N1cOmOtI1hz7dBn+ZfqM7c86qqWTNBEH98h3pkpmI6USnQA==
+
 is-wsl@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-2.2.0.tgz#74a4c76e77ca9fd3f932f290c17ea326cd157271"
@@ -1986,9 +2032,9 @@ next@13.4.2:
     "@next/swc-win32-x64-msvc" "13.4.2"
 
 node-releases@^2.0.8:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.10.tgz#c311ebae3b6a148c89b1813fd7c4d3c024ef537f"
-  integrity sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.11.tgz#59d7cef999d13f908e43b5a70001cf3129542f0f"
+  integrity sha512-+M0PwXeU80kRohZ3aT4J/OnR+l9/KD2nVLNNoRgFtnf+umQVFdGBAO2N8+nCnEi0xlh/Wk3zOGC+vNNx+uM79Q==
 
 nodemailer@^6.9.1:
   version "6.9.2"
@@ -2317,9 +2363,9 @@ preact-render-to-string@^5.1.19:
     pretty-format "^3.8.0"
 
 preact@^10.6.3:
-  version "10.14.1"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.14.1.tgz#1e15ef6a09e241a48d12c872b90557914b03abac"
-  integrity sha512-4XDSnUisk3YFBb3p9WeKeH1mKoxdFUsaXcvxs9wlpYR1wax/TWJVqhwmIWbByX0h7jMEJH6Zc5J6jqc58FKaNQ==
+  version "10.15.0"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.15.0.tgz#14bae0afe3547ca9d45d22fda2a4266462d31cf3"
+  integrity sha512-nZSa8M2R2m1n7nJSBlzDpxRJaIsejrTO1vlFbdpFvyC8qM1iU+On2y0otfoUm6SRB5o0lF0CKDFxg6grEFU0iQ==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -2426,6 +2472,11 @@ regexp.prototype.flags@^1.4.3, regexp.prototype.flags@^1.5.0:
     call-bind "^1.0.2"
     define-properties "^1.2.0"
     functions-have-names "^1.2.3"
+
+remove-accents@0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/remove-accents/-/remove-accents-0.4.2.tgz#0a43d3aaae1e80db919e07ae254b285d9e1c7bb5"
+  integrity sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==
 
 resolve-from@^4.0.0:
   version "4.0.0"
@@ -2667,6 +2718,13 @@ sucrase@^3.32.0:
     pirates "^4.0.1"
     ts-interface-checker "^0.1.9"
 
+superjson@^1.10.0:
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/superjson/-/superjson-1.12.3.tgz#383aacfd795c6eef24c383c70154c6cbbcbfb31a"
+  integrity sha512-0j+U70KUtP8+roVPbwfqkyQI7lBt7ETnuA7KXbTDX3mCKiD/4fXs2ldKSMdt0MCfpTwiMxo20yFU3vu6ewETpQ==
+  dependencies:
+    copy-anything "^3.0.2"
+
 supports-color@^7.1.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-7.2.0.tgz#1b7dcdcb32b8138801b3e478ba6a51caa89648da"
@@ -2847,6 +2905,11 @@ url@0.10.3:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-sync-external-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 util-deprecate@^1.0.2:
   version "1.0.2"

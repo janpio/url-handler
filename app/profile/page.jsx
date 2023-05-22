@@ -2,13 +2,14 @@
 
 import { getSession } from "next-auth/react";
 import { deleteAccount } from "./lib/deleteAccount";
-import { destroyCookie } from "nookies";
+import nookies,{ destroyCookie } from "nookies";
 
 const Profile = () => {
     const handleDelete = async () => {
         const session = await getSession();
+        
         if (session) {
-            destroyCookie(name="next-auth.session-token"),
+            destroyCookie("next-auth.session-token"),
             await deleteAccount(session?.user?.id);
             window.location.href = "/";
         }
@@ -16,7 +17,7 @@ const Profile = () => {
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
             <button
-                className="btn btn-circle btn-warning"
+                className="btn btn-circle btn-warning btn-lg btn-xl"
                 onClick={handleDelete}
             >
                 Delete Account

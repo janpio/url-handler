@@ -1,10 +1,32 @@
 "use client";
 
+import myAxios from "@/app/lib/axios";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { urlDelete } from "../lib/url";
 
-const DashboardTable = ({ urls, baseUrl }) => {
+const DashboardTable = ({ baseUrl }) => {
+    const queryClient = useQueryClient()
+    const {data,isLoading,isError}=useQuery({queryFn:async()=>{
+        const res= await myAxios.get("url")
+        return res.data
+    },queryKey:["urls"]})
+
+    const deleteUrl = useMutation({mutationFn:async(id)=>{
+        const res = await myAxios.delete(`url/${id}`)
+        return res.data
+    },onSuccess: () => {
+        queryClient.invalidateQueries(["urls"]);
+    },})
+    if (isLoading) {
+        return <div>Loading...</div>;
+      }
+    
+      if (isError) {
+        return <div>Error occurred while fetching data</div>;
+      }
     return (
+        <>
+        <p>You have  {data.count}  urls</p> 
         <div className="overflow-x-auto">
             <table className="table w-full">
                 <thead>
@@ -20,7 +42,7 @@ const DashboardTable = ({ urls, baseUrl }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {urls.map((url, index) => (
+                    {data?.allUrls?.map((url, index) => (
                         <tr className="hover" key={index}>
                             <td>{index + 1}</td>
                             <td>
@@ -47,9 +69,7 @@ const DashboardTable = ({ urls, baseUrl }) => {
                             <td>
                                 <button
                                     className="btn btn-warning"
-                                    onClick={async () => {
-                                        await urlDelete(url);
-                                    }}
+                                    onClick={()=>deleteUrl.mutate(url.id)}
                                 >
                                     Delete
                                 </button>
@@ -59,6 +79,7 @@ const DashboardTable = ({ urls, baseUrl }) => {
                 </tbody>
             </table>
         </div>
+        </>
     );
 };
 
