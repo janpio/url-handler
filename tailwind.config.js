@@ -1,92 +1,76 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    ],
-    daisyui: {
-        styled: true,
-        themes: true,
-        base: true,
-        utils: true,
-        logs: true,
-        rtl: false,
-        prefix: "",
-        darkTheme: "dark",
-        themes: [
-            "light",
-            "dark",
-            "cupcake",
-            "bumblebee",
-            "emerald",
-            "corporate",
-            "synthwave",
-            "retro",
-            "cyberpunk",
-            "valentine",
-            "halloween",
-            "garden",
-            "forest",
-            "aqua",
-            "lofi",
-            "pastel",
-            "fantasy",
-            "wireframe",
-            "black",
-            "luxury",
-            "dracula",
-            "cmyk",
-            "autumn",
-            "business",
-            "acid",
-            "lemonade",
-            "night",
-            "coffee",
-            "winter",
-            {
-                fav: {
-                    primary: "#c45fe2",
-
-                    secondary: "#584dd1",
-
-                    accent: "#e05814",
-
-                    neutral: "#261929",
-
-                    "base-100": "#2F2C44",
-
-                    info: "#94BAF0",
-
-                    success: "#5CE0B6",
-
-                    warning: "#FB9918",
-
-                    error: "#F36271",
-                },
-            },
-            {
-                mytheme: {
-                    primary: "#9fe544",
-
-                    secondary: "#f2b648",
-
-                    accent: "#030191",
-
-                    neutral: "#352A37",
-
-                    "base-100": "#2F3642",
-
-                    info: "#3B5CC9",
-
-                    success: "#1DD7A6",
-
-                    warning: "#FBDE51",
-
-                    error: "#E6376C",
-                },
-            },
-        ],
+  darkMode: ["class"],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+	],
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
     },
-    plugins: [require("@tailwindcss/typography"), require("daisyui")],
-};
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+}
