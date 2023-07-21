@@ -24,7 +24,7 @@ type Url = {
     createdAt: Date;
     lastAccessedAt: Date | null;
     openedCount: number;
-    type: string;
+    type: "PUBLIC" | "PRIVATE";
 };
 const Dashboard = () => {
     const { toast } = useToast();
@@ -98,7 +98,7 @@ const Dashboard = () => {
     );
     const body = (
         <div className="flex flex-col mt-10">
-            <p className="mb-2">You have {data?.count ?? 0} urls</p>
+            <p className="my-8">You have {data?.count ?? 0} urls</p>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>
@@ -131,6 +131,11 @@ const Dashboard = () => {
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>
                                         <Link
+                                            onClick={() => {
+                                                queryClient.invalidateQueries([
+                                                    "url",
+                                                ]);
+                                            }}
                                             href={`/d/${generatedUrl}`}
                                             target="_blank"
                                         >
@@ -139,6 +144,11 @@ const Dashboard = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Link
+                                            onClick={() => {
+                                                queryClient.invalidateQueries([
+                                                    "url",
+                                                ]);
+                                            }}
                                             href={`/d/${generatedUrl}`}
                                             target="_blank"
                                         >

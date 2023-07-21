@@ -18,6 +18,7 @@ import { CopyIcon } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 const Home = () => {
+    const [genLink, setGenLink] = useState("");
     const queryClient = useQueryClient();
     const { toast } = useToast();
     const urlMutation = useMutation({
@@ -38,14 +39,13 @@ const Home = () => {
     const form = useForm({
         resolver: zodResolver(
             z.object({
-                url: z.string(),
+                url: z.string().url(),
             })
         ),
         defaultValues: {
             url: "",
         },
     });
-    const [genLink, setGenLink] = useState("");
     const copyUrl = (link: string) => {
         if (typeof window !== "undefined" && window.navigator) {
             window.navigator.clipboard
@@ -58,7 +58,11 @@ const Home = () => {
                     });
                 })
                 .catch((error) => {
-                    console.error("Failed to copy URL:", error);
+                    toast({
+                        title: "failed",
+                        description: "URL Can't be copied, please retry.",
+                        duration: 2000,
+                    });
                 });
         }
     };
@@ -87,6 +91,7 @@ const Home = () => {
                                 <FormItem>
                                     <FormControl>
                                         <Input
+                                            className=""
                                             placeholder="https://nexisltd.com"
                                             {...field}
                                         />
@@ -95,19 +100,24 @@ const Home = () => {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit">Submit</Button>
+                        <Button
+                            className="flex justify-center w-full"
+                            type="submit"
+                        >
+                            Submit
+                        </Button>
                     </form>
                 </Form>
-                <div className="justify-between mt-2 h-12 w-full border border-accent px-4 py-1 rounded-lg flex items-center bg-base-100">
+                <div className="justify-between mt-2 h-12 w-full border border-accent px-4 py-1 rounded-lg flex items-center bg-accent-foreground">
                     <p
-                        className="text-sm text-center"
+                        className="text-sm text-center text-accent"
                         placeholder="Generated Link"
                     >
                         {genLink}
                     </p>
                     <Button
                         onClick={() => copyUrl(genLink)}
-                        className="shadow-md h-3/6 "
+                        className="h-3/6 hover:transition-all hover:animate-in hover:duration-700"
                     >
                         <CopyIcon />
                     </Button>
