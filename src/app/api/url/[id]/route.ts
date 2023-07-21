@@ -44,7 +44,6 @@ export const GET = async (req: NextRequest, { params }: ParamsType) => {
             return NextResponse.json({msg: "Not Found"},{status: 404});
         }
     } catch (error) {
-        console.error("Error retrieving data:", error);
         return NextResponse.error();
     } finally {
         await prisma.$disconnect();

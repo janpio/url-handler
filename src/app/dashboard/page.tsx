@@ -35,6 +35,7 @@ const Dashboard = () => {
             const res = await axios.get("/api/url");
             return res.data;
         },
+        staleTime: 50000,
     });
     const deleteUrl = useMutation({
         mutationFn: async (id: string) => {
@@ -47,7 +48,7 @@ const Dashboard = () => {
     });
     const loading = (
         <div className="flex flex-col mt-10">
-            <div className="w-64 h-4 bg-accent rounded-full animate-pulse mb-2" />
+            <Skeleton className="my-8 w-72 h-4" />
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>

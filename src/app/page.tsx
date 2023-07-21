@@ -57,7 +57,7 @@ const Home = () => {
                         duration: 2000,
                     });
                 })
-                .catch((error) => {
+                .catch(() => {
                     toast({
                         title: "failed",
                         description: "URL Can't be copied, please retry.",
@@ -91,7 +91,8 @@ const Home = () => {
                                 <FormItem>
                                     <FormControl>
                                         <Input
-                                            className=""
+                                            type="url"
+                                            className="w-full"
                                             placeholder="https://nexisltd.com"
                                             {...field}
                                         />
