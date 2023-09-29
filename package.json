@@ -42,7 +42,7 @@
     "@tanstack/eslint-plugin-query": "^4.29.9",
     "@tanstack/react-query-devtools": "^4.29.25",
     "@total-typescript/ts-reset": "^0.4.2",
-    "@types/node": "20.4.9",
+    "@types/node": "20.7.2",
     "@types/nodemailer": "^6.4.8",
     "@types/react": "18.2.20",
     "autoprefixer": "^10.4.14",
